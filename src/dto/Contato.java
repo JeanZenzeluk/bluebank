@@ -46,6 +46,7 @@ public class Contato {
 	}
 	public String getCor() {
 		return cor;
+//teste
 	}
 	public void setCor(String cor) {
 		this.cor = cor;
