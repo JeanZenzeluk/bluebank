@@ -1,0 +1,216 @@
+<html ng-app="exercicio">
+<head>
+
+	<title>Exercício 2</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-messages.js"></script>
+	<script src="lib/angular-locale_pt-br.js"></script>
+
+	<style type="text/css">
+		.excluir-icon{
+			text-indent:-9999px;
+			display:inline-block;
+			width:22px;
+			height:25px;
+			margin-right: 130px;
+			background: url(img/lixo-icon.png) no-repeat 0 0 transparent;
+			vertical-align:middle;
+		}
+		
+		.jumbotron{
+			width: 600px; 
+			height: auto; 
+		}
+		
+		.label-alinhamento{
+			text-align: left !important;
+		}
+		
+		.titulo-padrao{
+			text-align: left !important; 
+			font-weight: bold !important;
+			margin-left: 1px !important;
+			color: #286090;
+		}
+		
+		.botao-espacamento-padrao{
+			margin-left: 10px !important;
+			width: 80px !important;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		angular.module("exercicio", []);
+		angular.module("exercicio").controller("exercicioController", function ($scope, $http){
+			
+			$scope.tipos = [{codigo: 1, nome: "Web"},
+			               {codigo: 2, nome: "Desktop"}];
+			
+			$scope.tecnicas = [{codigo: 1, nome: "Técnica Web"},
+			         		{codigo: 2, nome: "Técnica Desktop"}];
+			
+			
+			$scope.salvarPlataforma = function(plataforma){
+				$http.post("http://localhost:8083/APIRESTAngularJS/REST/plataforma", plataforma).success(function (data){
+					$scope.saveSuccess = true;
+					$scope.saveError = false;
+				}).error(function (data){
+					$scope.saveSuccess = false;
+					$scope.saveError = true;
+				});
+			};
+			
+			
+			$scope.carregarPlataforma = function(){
+				$scope.saveSuccess = false;
+				$scope.saveError = false;
+				
+				var urlServico = "";
+				if($scope.plataforma == undefined || $scope.plataforma.nome != "teste erro"){
+					urlServico = "http://localhost:8083/APIRESTAngularJS/REST/plataforma";
+				}else{
+					urlServico = "http://localhost:8083/APIRESTAngularJS/REST/plataforma/geterror";
+				}
+				
+				$http.get(urlServico).success(function (data, status){
+					$scope.plataforma = data;
+					$scope.carregarError = false;
+					console.log("plataforma: " + $scope.plataforma.tipo.nome);
+				}).error(function (data, status){
+					$scope.carregarError = true;
+				});
+			};
+			
+			$scope.cancelar = function (plataforma){
+				$scope.salvoComSucesso = false;
+				$scope.plataformaForm.$setPristine();
+				limpaPlataforma(plataforma);
+			}
+			
+			var limpaPlataforma = function (plataforma) {
+				if(plataforma != undefined){
+					plataforma.nome = null;
+					plataforma.tipo = null;
+					plataforma.identificacao = null;
+					plataforma.tecnica = null;
+					plataforma.descricao = null;
+				}
+				$scope.saveSuccess = false;
+				$scope.saveError = false;
+				$scope.carregarError = false;
+			}
+			
+		});
+	
+	</script>
+
+</head>
+<body ng-controller="exercicioController">
+	<div style="padding: 20px; border: 1px grey solid;" class="jumbotron">
+		
+		<div class="row" >
+		
+			<div class="col-lg-4 titulo-padrao">
+				<h4>Editar Plataforma</h4>
+			</div>
+			<div class="col-lg-7" style="margin-left: 30px;">
+				<a ng-click="carregarPlataforma()" href="#" sstyle="float: right;">Carregar Plataforma via GET</a>
+			</div>
+			<br/>
+		</div>
+		
+  		
+  		<form name="plataformaForm">
+	  		<div class="row">
+			  <div class="col-lg-6">
+			  	
+			  	<div class="label-alinhamento">
+		  			<label>Nome</label>
+		  			<br/>
+		  			<input name="nome" class="form-control" type="text" ng-model="plataforma.nome" placeholder="Nome da Plataforma"/>
+		  			<br/>
+		  			<label>Tipo</label>
+		  			<br/>
+		  			
+		  			<select name="tipo" class="form-control" ng-model="plataforma.tipo" ng-options="tipo.nome for tipo in tipos track by tipo.codigo">
+						<option value="">Selecione um tipo</option>
+					</select>
+		  			<br/>
+		  			<label>Identificação na TAG</label>
+		  			<br/>
+		  			<input name="identificacao" class="form-control" type="text" ng-model="plataforma.identificacao" placeholder="TAG"/>
+		  			<br/>
+		  			<label>Dicionário</label>
+		  			<br/>
+		  			<select name="tecnica" class="form-control" ng-model="plataforma.tecnica" ng-options="tecnica.nome for tecnica in tecnicas track by tecnica.codigo">
+		  				<option value="">Seleciona uma tecnica</option>
+		  			</select>
+		  			<br/>
+	  			</div>
+			  	
+			  </div>
+			  <div class="col-lg-6">
+			    
+			    <div class="label-alinhamento">
+		  			<label>Descrição</label>
+		  			<br/>
+		  			<textarea name="descricao" ng-model="plataforma.descricao" class="form-control" rows="12" cols="20" placeholder="Descrição da Plataforma"></textarea>
+		  			<br/>
+	  			</div>
+		
+			  </div>
+			</div>
+
+			<div class="row">
+		  		<div class="col-lg-5">
+		  			<a class="excluir-icon" href="#" ng-click="cancelar(plataforma)"></a>
+		  		</div>
+		  		
+		  		<div class="col-lg-7">
+		  			<button class="btn btn-primary botao-espacamento-padrao" ng-click="cancelar(plataforma)">Cancelar</button>
+			  		<button class="btn btn-primary botao-espacamento-padrao" ng-click="salvarPlataforma(plataforma)">Salvar</button>
+			  		<button class="btn btn-primary botao-espacamento-padrao">Ok</button>
+			  	</div>
+		  		
+	  		</div>
+		</form>
+		
+		<div class="alert alert-success" ng-show="salvoComSucesso">
+			<strong>Salvo Com Sucesso</strong> 
+			<br/>
+			<div class="row" style="text-align: left !important; margin-left: 15px !important;">
+				<div ng-show="plataformaForm.nome.$dirty">
+					Nome: {{plataforma.nome}}
+				</div>
+				<div ng-show="plataformaForm.tipo.$dirty">
+					Tipo: {{plataforma.tipo.nome}}
+				</div>
+				<div ng-show="plataformaForm.identificacao.$dirty">
+					Identificação: {{plataforma.identificacao}}
+				</div>
+				<div ng-show="plataformaForm.tecnica.$dirty">
+					Técnica: {{plataforma.tecnica.nome}}
+				</div>
+				<div ng-show="plataformaForm.descricao.$dirty">
+					Descrição: {{plataforma.descricao}}
+				</div>
+			</div>
+		</div>
+  		
+		<div class="alert alert-danger" ng-show="carregarError">
+	  		<strong>Ops!</strong> Ocorreu um erro ao carregar a plataforma.
+		</div>
+		<div class="alert alert-success" ng-show="saveSuccess">
+	  		Plataforma salva com sucesso!
+		</div>
+		<div class="alert alert-danger" ng-show="saveError">
+	  		<strong>Ops!</strong> Ocorreu um erro ao salvar a plataforma.
+		</div>
+		
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,310 @@
+<html ng-app="exercicio4">
+<head>
+
+	<title>Exercício 4</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<link rel="stylesheet" type="text/css" href="css/exercicio4.css">
+	<script src="lib/jquery-3.1.0.min.js"></script>
+	<script src="lib/bootstrap.js"></script>
+	<script scr="lib/angular-dirpagination.js"></script>
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-messages.js"></script>
+	<script src="lib/angular-locale_pt-br.js"></script>
+	<script src="js/appExercicio4.js"></script>
+	<script src="js/controllers/exercicio4Ctrl.js"></script>
+	<script src="js/directives/uiTableExercicioDirective.js"></script>
+
+</head>
+<body ng-controller="exercicio4Ctrl">
+
+	<div style="padding: 20px; border: 1px grey solid;" class="jumbotron">
+		
+		<div class="panel panel-primary" style="margin-top: -20px !important; margin-left: -20px !important; margin-right: -20px !important; border-radius: 0px !important;">
+			<div class="panel-heading titulo-cabecalho">Exercício 4 - Treinamento AngularJS CINQ</div>
+		</div>
+
+
+		<!-- TABELA DE FUNCIONALIDADES -->
+		<div ng-show="!habilitaAdicionarFuncionalidade && tipoFuncionalidade && habilitaTabelaListagem">
+			<div class="row">
+				<div class="col-lg-6 alinhar-esquerda">
+					<h4> Funcionalidades </h4>
+					<a href="#" class="cor-fonte-destaque1" ng-click="clickProdutos()">Produtos</a>
+					> Funcionalidades
+					<br/>
+					<br/>
+					
+				</div>
+				<div class="col-lg-6 alinhar-direita">
+					
+					<div class="div-botao-adicionar">
+						<div class="dropdown">
+						  <button class="glyphicon glyphicon-plus btn btn-default dropdown-toggle botao-espacamento-padrao3" data-toggle="dropdown"> 
+						  	
+						  	<label class=" fonte-padrao">
+						  		Adicionar
+						    </label>
+						  	<span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu pull-right" style="float: right !important; background-color: #337AB7 !important;">
+						    <li><a href="#" ng-click="adicionarPlataforma()" class="color-item-submenu">Plataforma</a></li>
+						    <li><a href="#" ng-click="adicionarFuncionalidade()" class="color-item-submenu">Funcionalidade</a></li>
+						  </ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row" style="padding-left: 15px; padding-right: 18px;">
+
+				<!-- Aqui directiva de Tabela -->
+				<ui-funcionalidades>
+					<ui-table-exercicio funcionalidades-lista="funcionalidades" name-first-column="Funcionalidade" 
+					total-de-registros="funcionalidades.length">
+
+					</ui-table-exercicio>
+				</ui-funcionalidades>
+
+			</div>
+			<div class="alert alert-success" ng-show="saveSuccess">
+			  		Funcionalidade salva com sucesso!
+				</div>
+		</div>
+
+
+
+		<!-- TABELA DE PLATAFORMAS -->
+		<div ng-show="!habilitaAdicionarFuncionalidade && !tipoFuncionalidade && habilitaTabelaListagem">
+			<div class="row">
+				<div class="col-lg-6 alinhar-esquerda">
+					<h4> Plataformas </h4>
+					<a href="#" class="cor-fonte-destaque1" ng-click="clickProdutos()">Produtos</a>
+					> Plataformas
+					<br/>
+					<br/>
+					
+				</div>
+				<div class="col-lg-6 alinhar-direita">
+					
+					<div class="div-botao-adicionar">
+						<div class="dropdown">
+						  <button class="glyphicon glyphicon-plus btn btn-default dropdown-toggle botao-espacamento-padrao3" data-toggle="dropdown"> 
+						  	
+						  	<label class=" fonte-padrao">
+						  		Adicionar
+						    </label>
+						  	<span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu pull-right" style="float: right !important; background-color: #337AB7 !important;">
+						    <li><a href="#" ng-click="adicionarPlataforma()" class="color-item-submenu">Plataforma</a></li>
+						    <li><a href="#" ng-click="adicionarFuncionalidade()" class="color-item-submenu">Funcionalidade</a></li>
+						  </ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row" style="padding-left: 15px; padding-right: 18px;">
+
+				<!-- Aqui directiva de Tabela -->
+				<ui-funcionalidades>
+					<ui-table-exercicio funcionalidades-lista="plataformas" name-first-column="Plataforma" 
+					total-de-registros="plataformas.length">
+
+					</ui-table-exercicio>
+				</ui-funcionalidades>
+
+			</div>
+			<div class="alert alert-success" ng-show="saveSuccess">
+			  		Plataforma salva com sucesso!
+				</div>
+		</div>
+		
+
+
+		
+		<!-- FORMULÁRIO DE ADICIONAR FUNCIONALIDADES -->
+		<div ng-show="habilitaAdicionarFuncionalidade && tipoFuncionalidade && !habilitaTabelaListagem">
+		<div class="row">
+				
+			<div class="col-lg-4 titulo-padrao">
+				<h4>Adicionar Funcionalidade</h4>
+			</div>
+			<div class="col-lg-7" style="margin-left: 30px;">
+				<a ng-click="carregarFuncionalidade()" href="#" sstyle="float: right;">Carregar Funcionalidade via GET</a>
+			</div>
+			<br/>
+		</div>
+				
+		 <form name="funcionalidadeForm" novalidate>
+			<div class="row">
+				<div class="col-lg-6">
+					  	
+					<div class="label-alinhamento">
+				  			
+				  		<div>
+				  			<label>Nome</label>
+						</div>
+				  		<input name="nome" class="form-control" type="text" ng-model="funcionalidade.nome" placeholder="Nome da Funcionalidade" ng-required="true"/>
+				  		<label class="label-obrigatorio" ng-show="funcionalidadeForm.nome.$dirty && funcionalidadeForm.nome.$invalid">Campo obrigatório!</label>
+				  		<br/>
+						<label>Tipo</label>
+			  			<br/>
+				  			
+			  			<select name="tipo" class="form-control" ng-model="funcionalidade.tipo" ng-options="tipo.nome for tipo in tipos track by tipo.codigo" ng-required="true">
+								<option value="">Selecione um tipo</option>
+						</select>
+
+				  		<label class="label-obrigatorio" ng-show="funcionalidadeForm.tipo.$dirty && funcionalidadeForm.tipo.$invalid">Campo obrigatório!</label>
+				  		<br/>
+				  		<label>Identificação na TAG</label>
+				  		<br/>
+				  		<input name="identificacao" class="form-control" type="text" ng-model="funcionalidade.identificacao" placeholder="TAG" ng-required="true"/>
+
+				  		<label class="label-obrigatorio" ng-show="funcionalidadeForm.identificacao.$dirty && funcionalidadeForm.identificacao.$invalid">Campo obrigatório!</label>
+				  		<br/>
+				  		<label>Dicionário</label>
+				  		<br/>
+				  		<select name="tecnica" class="form-control" ng-model="funcionalidade.tecnica" ng-options="tecnica.nome for tecnica in tecnicas track by tecnica.codigo" ng-required="true">
+			  				<option value="">Seleciona uma tecnica</option>
+						</select>
+
+			  			<label class="label-obrigatorio" ng-show="funcionalidadeForm.tecnica.$dirty && funcionalidadeForm.tecnica.$invalid">Campo obrigatório!</label>
+			  			<br/>
+		  			</div>
+					  	
+				</div>
+				<div class="col-lg-6">
+					    
+					<div class="label-alinhamento">
+				  		<label>Descrição</label>
+				  		<br/>
+				  		<textarea name="descricao" ng-model="funcionalidade.descricao" class="form-control" rows="12" cols="20" placeholder="Descrição da Funcionalidade" ng-required="true"></textarea>
+				  		<label class="label-obrigatorio" ng-show="funcionalidadeForm.descricao.$dirty && funcionalidadeForm.descricao.$invalid">Campo obrigatório!</label>
+						<br/>
+			  		</div>
+				
+					</div>
+			</div>
+		
+			<div class="row">
+				  <div class="col-lg-5">
+				  		<a class="excluir-icon" href="#" ng-click="limparDados(funcionalidade, funcionalidadeForm)"></a>
+				  	</div>
+				  		
+				  	<div class="col-lg-7">
+				  		<button class="btn btn-primary botao-espacamento-padrao" ng-click="okCancel(funcionalidade)">Cancelar</button>
+					  	<button class="btn btn-primary botao-espacamento-padrao" ng-disabled="funcionalidadeForm.$invalid" ng-click="salvarFuncionalidade(funcionalidade)">Salvar</button>
+					  	<button class="btn btn-primary botao-espacamento-padrao" ng-click="okCancel(funcionalidade)">Ok</button>
+					  </div>
+				  		
+			  </div>
+		</form>
+				
+		<div class="alert alert-danger" ng-show="carregarError">
+			<strong>Ops!</strong> Ocorreu um erro ao carregar a funcionalidade.
+		</div>
+		<div class="alert alert-danger" ng-show="saveError">
+		  	<strong>Ops!</strong> Ocorreu um erro ao salvar a funcionalidade.
+		</div>				
+	</div>
+
+
+
+
+
+
+
+	<!-- FORMULÁRIO DE ADICIONAR PLATAFORMAS -->
+	<div ng-show="!habilitaAdicionarPlataforma && !tipoFuncionalidade && !habilitaTabelaListagem">
+		<div class="row">
+				
+			<div class="col-lg-4 titulo-padrao">
+				<h4>Adicionar Plataforma</h4>
+			</div>
+			<div class="col-lg-7" style="margin-left: 30px;">
+				<a ng-click="carregarPlataforma()" href="#" sstyle="float: right;">Carregar Plataforma via GET</a>
+			</div>
+			<br/>
+		</div>
+				
+		<form name="plataformaForm" novalidate>
+			<div class="row">
+				<div class="col-lg-6">
+					  	
+					<div class="label-alinhamento">		
+				  		<div>
+				  		<label>Nome</label>
+						</div>
+				  		<input name="nome" class="form-control" type="text" ng-model="plataforma.nome" placeholder="Nome da Plataforma" ng-required="true"/>
+				  		<label class="label-obrigatorio" ng-show="plataformaForm.nome.$dirty && plataformaForm.nome.$invalid">Campo obrigatório!</label>
+				  		<br/>
+				  		<label>Tipo</label>
+				  		<br/>
+				  			
+				  		<select name="tipo" class="form-control" ng-model="plataforma.tipo" ng-options="tipo.nome for tipo in tipos track by tipo.codigo" ng-required="true">
+							<option value="">Selecione um tipo</option>
+						</select>
+
+				  		<label class="label-obrigatorio" ng-show="plataformaForm.tipo.$dirty && plataformaForm.tipo.$invalid">Campo obrigatório!</label>
+				  		<br/>
+				  		<label>Identificação na TAG</label>
+				  		<br/>
+				  		<input name="identificacao" class="form-control" type="text" ng-model="plataforma.identificacao" placeholder="TAG" ng-required="true"/>
+
+				  		<label class="label-obrigatorio" ng-show="plataformaForm.identificacao.$dirty && plataformaForm.identificacao.$invalid">Campo obrigatório!</label>
+				  		<br/>
+				  		<label>Dicionário</label>
+				  		<br/>
+				  		<select name="tecnica" class="form-control" ng-model="plataforma.tecnica" ng-options="tecnica.nome for tecnica in tecnicas track by tecnica.codigo" ng-required="true">
+				  			<option value="">Seleciona uma tecnica</option>
+				  		</select>
+
+				  		<label class="label-obrigatorio" ng-show="plataformaForm.tecnica.$dirty && plataformaForm.tecnica.$invalid">Campo obrigatório!</label>
+				  		<br/>
+			  		</div>
+					  	
+				</div>
+				<div class="col-lg-6">
+					    
+					<div class="label-alinhamento">
+				  		<label>Descrição</label>
+				  		<br/>
+				  		<textarea name="descricao" ng-model="plataforma.descricao" class="form-control" rows="12" cols="20" placeholder="Descrição da Plataforma" ng-required="true"></textarea>
+				  		<label class="label-obrigatorio" ng-show="plataformaForm.descricao.$dirty && plataformaForm.descricao.$invalid">Campo obrigatório!</label>
+				  		<br/>
+			  		</div>
+				
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="col-lg-5">
+				  	<a class="excluir-icon" href="#" ng-click="limparDados(plataforma, plataformaForm)"></a>
+				</div>	
+				<div class="col-lg-7">
+				  	<button class="btn btn-primary botao-espacamento-padrao" ng-click="okCancelPlataforma(plataforma)">Cancelar</button>
+					<button class="btn btn-primary botao-espacamento-padrao" ng-disabled="plataformaForm.$invalid" ng-click="salvarPlataforma(plataforma)">Salvar</button>
+					<button class="btn btn-primary botao-espacamento-padrao" ng-click="okCancelPlataforma(plataforma)">Ok</button>
+				</div>
+				  		
+			</div>
+		</form>
+		<div class="alert alert-danger" ng-show="carregarError">
+			  <strong>Ops!</strong> Ocorreu um erro ao carregar a plataforma.
+		</div>
+		<div class="alert alert-danger" ng-show="saveError">
+			<strong>Ops!</strong> Ocorreu um erro ao salvar a plataforma.
+		</div>
+				
+	</div>
+
+	</div>
+
+</body>
+</html>

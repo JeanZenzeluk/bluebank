@@ -1,0 +1,77 @@
+		.excluir-icon{
+			text-indent:-9999px;
+			display:inline-block;
+			width:22px;
+			height:25px;
+			margin-right: 130px;
+			background: url(../img/lixo-icon.png) no-repeat 0 0 transparent;
+			vertical-align:middle;
+			float: left !important;
+		}
+		
+		.jumbotron{
+			width: 900px; 
+			height: 530px; 
+		}
+		
+		.label-alinhamento{
+			text-align: left !important;
+		}
+		
+		.titulo-padrao{
+			text-align: left !important; 
+			font-weight: bold !important;
+			margin-left: 1px !important;
+			color: #286090;
+		}
+		
+		.botao-espacamento-padrao{
+			margin-left: 10px !important;
+			width: 80px !important;
+		}
+		.botao-espacamento-padrao2{
+			margin-left: 10px !important;
+			width: 125px !important;
+			margin-bottom: 4px;
+		}
+		.botao-espacamento-padrao3{
+			margin-left: 10px !important;
+			width: 135px !important;
+			margin-bottom: 4px;
+		}
+		.alinhar-esquerda{
+			text-align: left !important;
+		}
+		.alinhar-direita{
+			text-align: right !important;
+		}
+		.cor-fonte-destaque1{
+			color: #1E90FF !important;
+		}
+		.div-botao-adicionar{
+			padding-right: 20px;
+			margin-top: 12px;
+		}
+		.label-obrigatorio{
+			font-weight: normal !important; 
+			color: #DC143C !important;
+		}
+		.titulo-cabecalho{
+			font-size: 17px !important;
+			font-weight: bold !important;
+		}
+		.dropdown-menu > li > a:hover,
+		.dropdown-menu > li > a:focus {
+		  color: white !important;
+		  text-decoration: none;
+		  background-color: #4B708B !important;
+
+		}
+		.color-item-submenu{
+			color: white !important;
+		}
+		.fonte-padrao{
+			font-family: Verdana, Arial, Helvetica, sans-serif !important;
+			font-style: normal !important;
+  			font-weight: normal !important;
+		}

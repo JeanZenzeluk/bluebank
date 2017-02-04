@@ -1,0 +1,141 @@
+<html ng-app="exercicio3">
+<head>
+
+	<title>Exercício 3</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<script src="lib/jquery-3.1.0.min.js"></script>
+	<script src="lib/bootstrap.js"></script>
+	<script src="lib/angular.js"></script>
+	<script src="lib/angular-messages.js"></script>
+	<script src="lib/angular-locale_pt-br.js"></script>
+	<script src="js/appExercicio3.js"></script>
+	<script src="js/directives/uiTableExercicioDirective.js"></script>
+
+	<style type="text/css">
+		.jumbotron{
+			width: 900px; 
+			height: auto; 
+		}
+		.botao-espacamento-padrao{
+			margin-left: 10px !important;
+			width: 80px !important;
+		}
+		.botao-espacamento-padrao2{
+			margin-left: 10px !important;
+			width: 125px !important;
+			margin-bottom: 4px;
+		}
+		.botao-espacamento-padrao3{
+			margin-left: 10px !important;
+			width: 135px !important;
+			margin-bottom: 4px;
+		}
+		.alinhar-esquerda{
+			text-align: left !important;
+		}
+		.alinhar-direita{
+			text-align: right !important;
+		}
+		.cor-fonte-destaque1{
+			color: #1E90FF;
+		}
+		.titulo-cabecalho{
+			font-size: 17px !important;
+			font-weight: bold !important;
+		}
+		.dropdown-menu > li > a:hover,
+		.dropdown-menu > li > a:focus {
+		  color: white !important;
+		  text-decoration: none;
+		  background-color: #4B708B !important;
+
+		}
+		.color-item-submenu{
+			color: white !important;
+		}
+		.fonte-padrao{
+			font-family: Verdana, Arial, Helvetica, sans-serif !important;
+			font-style: normal !important;
+  			font-weight: normal !important;
+		}
+		.div-botao-adicionar{
+			padding-right: 20px;
+			margin-top: 12px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		angular.module("exercicio3").controller("exercicio3Ctrl", function ($scope, $http){
+
+			$scope.funcionalidades = [{nome:'AF-2', descricao:'Lorem ipsum dolor sit amet, consectetur adipiscing elit'},
+                         {nome:'AF3', descricao:'Lorem ipsum dolor sit amet, consectetur adipiscing elit'},
+                         {nome:'EB-7', descricao:'Lorem ipsum dolor sit amet, consectetur adipiscing elit'},
+                         {nome:'EC-8', descricao:'Lorem ipsum dolor sit amet, consectetur adipiscing elit'}];
+
+			$scope.adicionarPlataforma = function(){
+            	console.log("Chamou Adicionar Plataforma");
+            }
+
+            $scope.adicionarFuncionalidade = function(){
+            	console.log("Chamou Adicionar Funcionalidade");
+            }
+
+			});
+	</script>
+
+</head>
+<body ng-controller="exercicio3Ctrl">
+	
+	<div style="padding: 20px; border: 1px grey solid;" class="jumbotron">
+		
+<div class="panel panel-primary" style="margin-top: -20px !important; margin-left: -20px !important; margin-right: -20px !important; border-radius: 0px !important;">
+			<div class="panel-heading titulo-cabecalho">Exercício 3 - Treinamento AngularJS CINQ</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-6 alinhar-esquerda">
+				<h4> Funcionalidades </h4>
+				<a href="#" class="cor-fonte-destaque1">Produtos</a>
+				> Funcionalidades
+				<br/>
+				<br/>
+				
+			</div>
+			<div class="col-lg-6 alinhar-direita">
+				
+				<div class="div-botao-adicionar">
+					<div class="dropdown">
+						  <button class="glyphicon glyphicon-plus btn btn-default dropdown-toggle botao-espacamento-padrao3" data-toggle="dropdown"> 
+						  	
+						  	<label class=" fonte-padrao">
+						  		Adicionar
+						    </label>
+						  	<span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu pull-right" style="float: right !important; background-color: #337AB7 !important;">
+						    <li><a href="#" ng-click="adicionarPlataforma()" class="color-item-submenu">Plataforma</a></li>
+						    <li><a href="#" ng-click="adicionarFuncionalidade()" class="color-item-submenu">Funcionalidade</a></li>
+						  </ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="row" style="padding-left: 15px; padding-right: 18px;">
+
+			<!-- Aqui directiva de Tabela -->
+			<ui-funcionalidades>
+				<ui-table-exercicio funcionalidades-lista="funcionalidades" name-first-column="Funcionalidade" total-de-registros="funcionalidades.length">
+
+				</ui-table-exercicio>
+			</ui-funcionalidades>
+
+		</div>
+	</div>
+
+</body>
+</html>
