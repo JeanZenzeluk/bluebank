@@ -1,4 +1,4 @@
 angular.module("listaTelefonica", ["ngMessages", "serialGenerator", "ui", "ngRoute"])
 .run(function($rootScope) {
-    $rootScope.contatos = [];
+    $rootScope.contas = [];
 })

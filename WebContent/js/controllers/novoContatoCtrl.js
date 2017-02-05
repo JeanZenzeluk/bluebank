@@ -1,47 +1,39 @@
-angular.module("listaTelefonica").controller("novoContatoCtrl", function ($scope, contatosAPI, serialGenerator, $location, $rootScope, operadoras){
+angular.module("listaTelefonica").controller("novaContaCtrl", function ($scope, contasAPI, serialGenerator, $location, $rootScope){
 
-			$scope.operadoras = operadoras.data;
 			$scope.cores = [
 				{nome: "Vermelho", corcss: "#FA8072"},
 				{nome: "Azul", corcss: "#87CEFA"},
 				{nome: "Amarelo", corcss: "#FFD700"}
 			];
 
-			/*
-			var carregarOperadoras = function () {
-				operadorasAPI.getOperadoras().success(function (data, status){
-					$scope.operadoras = data;
-				});
-			} */
-
-			$scope.adicionarContato = function(contato){
-				contato.serial = serialGenerator.generate();
-				contato.data = new Date();
-				contato.id = $rootScope.contatos.length +1;
-				contatosAPI.saveContato(contato).success(function (data){
-					$rootScope.contatos.push(angular.copy(contato));
-					alert($scope.contato.nome + " adicionado com sucesso!");
-					console.log("rootScope.contatos = " + $rootScope.contatos.length);
-					delete $scope.contato;
-					//Volta o contatoForm ao estado 'Pristine' (pristine é quando os campos não foram tocados ainda)
-					$scope.contatoForm.$setPristine();
-					$location.path("/contatos");
-					//carregarContatos();
+			$scope.adicionarConta = function(conta){
+				conta.serial = serialGenerator.generate();
+				conta.data = new Date();
+				conta.id = $rootScope.contas.length +1;
+				contasAPI.saveConta(conta).success(function (data){
+					$rootScope.contas.push(angular.copy(conta));
+					alert($scope.conta.nome + " adicionado com sucesso!");
+					console.log("rootScope.contas = " + $rootScope.contas.length);
+					delete $scope.conta;
+					//Volta o contaForm ao estado 'Pristine' (pristine é quando os campos não foram tocados ainda)
+					$scope.contaForm.$setPristine();
+					$location.path("/contas");
+					//carregarContas();
 				});
 
-				//adiciona no array, e depois deleta o contato do escopo
-				//$scope.contatos.push(angular.copy(contato)); 
+				//adiciona no array, e depois deleta o conta do escopo
+				//$scope.contas.push(angular.copy(conta)); 
 				
 			};
 
 			/*
-			$scope.adicionarContato = function(contato){
-				contato.data = new Date();
-				//adiciona no array, e depois deleta o contato do escopo
-				$scope.contatos.push(angular.copy(contato)); 
-				delete $scope.contato;
-				//Volta o contatoForm ao estado 'Pristine' (pristine é quando os campos não foram tocados ainda)
-				$scope.contatoForm.$setPristine();
+			$scope.adicionarConta = function(conta){
+				conta.data = new Date();
+				//adiciona no array, e depois deleta o conta do escopo
+				$scope.contas.push(angular.copy(conta)); 
+				delete $scope.conta;
+				//Volta o contaForm ao estado 'Pristine' (pristine é quando os campos não foram tocados ainda)
+				$scope.contaForm.$setPristine();
 			}; 
 			*/
 

@@ -1,27 +1,27 @@
 <div class="jumbotron">
-<form name="contatoForm">
-			<input class="form-control margin-padrao" type="input" ng-model="contato.nome" placeholder="Nome" 
+<form name="contaForm">
+			<input class="form-control margin-padrao" type="input" ng-model="conta.nome" placeholder="Nome" 
 				ng-required="true" name="inputNome" ng-minlength="3"/>
-			<input class="form-control margin-padrao" type="input" ng-model="contato.telefone" placeholder="Telefone" 
+			<input class="form-control margin-padrao" type="input" ng-model="conta.telefone" placeholder="Telefone" 
 				ng-required="true" name="inputTelefone" ng-minlength="8" ng-pattern="/^\d{4,5}-\d{4}$/"/>
-			<input class="form-control margin-padrao" type="text" ng-model="contato.data" name="data" placeholder="Data" ui-date/>
+			<input class="form-control margin-padrao" type="text" ng-model="conta.data" name="data" placeholder="Data" ui-date/>
 			
-			<input class="form-control margin-padrao" type="text" ng-model="contato.cpf" placeholder="CPF"
+			<input class="form-control margin-padrao" type="text" ng-model="conta.cpf" placeholder="CPF"
 				name="inputCPF" ui-cpf/>
-			
-			<select class="form-control margin-padrao" ng-model="contato.operadora" 
+			<!-- 
+			<select class="form-control margin-padrao" ng-model="conta.operadora" 
 				ng-options="operadora.nome + ' ( ' + (operadora.preco | currency) + ')' group by operadora.categoria for operadora in operadoras | orderBy:'nome'">
 				<option value="">Selecione uma operadora</option>
-			</select>
-			<select class="form-control margin-padrao" ng-model="contato.cor"
+			</select>-->
+			<select class="form-control margin-padrao" ng-model="conta.cor"
 				ng-options="cor.corcss as cor.nome for cor in cores | orderBy:'nome'">
 				<option value="">Selecione uma cor</option>
 			</select>
 
 			<!-- $dirty se o campo já foi 'tocado' alguma vez -->
-			<!-- contatoForm.inputNome.$invalid para validar apenas se é required == true-->
+			<!-- contaForm.inputNome.$invalid para validar apenas se é required == true-->
 			
-			<div ng-messages="contatoForm.inputNome.$error" ng-show="contatoForm.inputNome.$dirty">
+			<div ng-messages="contaForm.inputNome.$error" ng-show="contaForm.inputNome.$dirty">
 				<div ng-message="required" class="alert alert-danger margin-padrao">
 					Por favor, preencha o campo Nome!
 				</div>
@@ -29,7 +29,7 @@
 					O campo nome deve ter mais de 2 caracteres!
 				</div>
 			</div>
-			<div ng-messages="contatoForm.inputTelefone.$error" ng-show="contatoForm.inputTelefone.$dirty">
+			<div ng-messages="contaForm.inputTelefone.$error" ng-show="contaForm.inputTelefone.$dirty">
 				<div ng-message="required" class="alert alert-danger margin-padrao">
 					Por favor, preencha o campo Telefone!
 				</div>
@@ -43,25 +43,25 @@
 
 
 			<!-- MODELO SEM O NG-MESSAGES
-				<div ng-show="contatoForm.inputNome.$error.required && contatoForm.inputNome.$dirty" class="alert alert-danger margin-padrao">
+				<div ng-show="contaForm.inputNome.$error.required && contaForm.inputNome.$dirty" class="alert alert-danger margin-padrao">
 					Por favor, preencha o campo Nome!
 				</div>
-				<div ng-show="contatoForm.inputNome.$error.minlength" class="alert alert-danger margin-padrao">
+				<div ng-show="contaForm.inputNome.$error.minlength" class="alert alert-danger margin-padrao">
 					O campo nome deve ter mais de 3 caracteres!
 				</div>
-				<div ng-show="contatoForm.inputTelefone.$error.required && contatoForm.inputTelefone.$dirty" class="alert alert-danger">
+				<div ng-show="contaForm.inputTelefone.$error.required && contaForm.inputTelefone.$dirty" class="alert alert-danger">
 					Por favor, preencha o campo Telefone!
 				</div>
-				<div ng-show="contatoForm.inputTelefone.$error.minlength" class="alert alert-danger">
+				<div ng-show="contaForm.inputTelefone.$error.minlength" class="alert alert-danger">
 					O campo telefone deve ter mais de 8 caracteres!
 				</div>
-				<div ng-show="contatoForm.inputTelefone.$error.pattern && !contatoForm.inputTelefone.$error.minlength" class="alert alert-danger">
+				<div ng-show="contaForm.inputTelefone.$error.pattern && !contaForm.inputTelefone.$error.minlength" class="alert alert-danger">
 					O campo telefone deve ter o formato DDDDD-DDDD
 				</div>
 			-->
 			
 
-			<button class="btn btn-primary btn-block margin-padrao" ng-click="adicionarContato(contato)" ng-disabled="contatoForm.$invalid">Adicionar Contato</button>
+			<button class="btn btn-primary btn-block margin-padrao" ng-click="adicionarConta(conta)" ng-disabled="contaForm.$invalid">Adicionar Conta</button>
 
 		</form>
 	</div>

@@ -1,32 +1,30 @@
 angular.module("listaTelefonica").config(function ($routeProvider){
-	$routeProvider.when("/contatos",{
+	$routeProvider.when("/contas",{
 		controller: "listaTelefonicaCtrl",
-		templateUrl: "view/contatos.html",
+		templateUrl: "view/contas.html",
 		resolve: {
-			contatos: function(contatosAPI){
-				return contatosAPI.getContatos();
+			contas: function(contasAPI){
+				return contasAPI.getContas();
 			}
 		}
 	});
 	
-	$routeProvider.when("/novoContato",{
-		templateUrl: "view/novoContato.html",
-		controller: "novoContatoCtrl",
+	$routeProvider.when("/novaConta",{
+		templateUrl: "view/novaConta.html",
+		controller: "novoContaCtrl",
 		resolve: {
-			operadoras: function(operadorasAPI) {
-				return operadorasAPI.getOperadoras();
-			}
+			
 		}
 	});
 
-	$routeProvider.when("/detalhesContato/:id",{
-		templateUrl: "view/detalhesContato.html",
+	$routeProvider.when("/detalhesConta/:id",{
+		templateUrl: "view/detalhesConta.html",
 		//resolve: {
-		//	contato: function(contatosAPI, $route){
-		//		return contatosAPI.getContato($route.current.params.id);
+		//	conta: function(contasAPI, $route){
+		//		return contasAPI.getConta($route.current.params.id);
 		//	}
 		//}
-		controller: "detalhesContatoCtrl"
+		controller: "detalhesContaCtrl"
 	});
 
 	$routeProvider.when("/error",{
@@ -34,7 +32,7 @@ angular.module("listaTelefonica").config(function ($routeProvider){
 	});
 
 	$routeProvider.otherwise({
-		redirectTo: "/contatos"
+		redirectTo: "/contas"
 	});
 
 });

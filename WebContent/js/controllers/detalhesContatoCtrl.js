@@ -1,16 +1,16 @@
-angular.module("listaTelefonica").controller("detalhesContatoCtrl", function ($scope, contatosAPI, $routeParams){
+angular.module("listaTelefonica").controller("detalhesContaCtrl", function ($scope, contasAPI, $routeParams){
 
-	var carregaDetalhamentoContato = function(){
-		contatosAPI.getContato($routeParams.id).success(function (data){
-			$scope.contato = data;
+	var carregaDetalhamentoConta = function(){
+		contasAPI.getConta($routeParams.id).success(function (data){
+			$scope.conta = data;
 		});
 	}
 
-	/*Pode também passar o contato Provider se for adicionar o resolve do 
-	  mesmo recebendo o retorno do serviço do contatoAPI, deixando o código aqui assim:
+	/*Pode também passar o conta Provider se for adicionar o resolve do 
+	  mesmo recebendo o retorno do serviço do contaAPI, deixando o código aqui assim:
 	   
-		$scope.contato = contato.data.
+		$scope.conta = conta.data.
 	*/
 
-	carregaDetalhamentoContato();
+	carregaDetalhamentoConta();
 });
