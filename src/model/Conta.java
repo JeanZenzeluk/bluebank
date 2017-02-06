@@ -21,6 +21,10 @@ public class Conta {
 	private String numero_agencia;
 	@Column(nullable = false)
 	private String numero_conta;
+	@Column(nullable = false)
+	private Double saldo;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -44,6 +48,12 @@ public class Conta {
 	}
 	public void setNumero_conta(String numero_conta) {
 		this.numero_conta = numero_conta;
+	}
+	public Double getSaldo() {
+		return saldo;
+	}
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
 	}
 
 }

@@ -15,6 +15,7 @@ import model.Conta;
 import com.google.gson.Gson;
 
 import dao.ContaDAO;
+import dto.ContaDTO;
 
 @Path("/conta")
 public class ContaService {
@@ -24,13 +25,10 @@ public class ContaService {
 	@Produces("application/json")
 	public String listaContas() {
 		String jsonRetorno = "";
-		System.out.println("Chamou listaContas...");
 		try {
 			ArrayList<Conta> contas = new ArrayList<Conta>();
 			
 			ContaDAO dao = new ContaDAO();
-			
-			contas = (ArrayList<Conta>) dao.listar();
 			
 			Gson gson = new Gson();
 			System.out.println(gson.toJson(contas));
@@ -53,7 +51,7 @@ public class ContaService {
 			ArrayList<Conta> contas = new ArrayList<Conta>();
 			ContaDAO dao = new ContaDAO();
 			
-			contas = contas = (ArrayList<Conta>) dao.listar();
+			//contas = contas = (ArrayList<Conta>) dao.listar();
 			
 			Conta contaRetorno = null;
 			
@@ -79,16 +77,22 @@ public class ContaService {
 	@POST
 	@Produces("application/json")
 	public Response postConta(String conta) {
-		System.out.println("Chamou postConta");
 		
 		Gson gson = new Gson();
-		Conta contaNovo = gson.fromJson(conta, Conta.class);
+		ContaDTO transferencia = gson.fromJson(conta, ContaDTO.class);
 		
+		Conta contaOrigem = ContaDAO.getContaPorAgenciaEConta(transferencia.getAgenciaOrigem(), transferencia.getContaOrigem());
+		Conta contaDestino = ContaDAO.getContaPorAgenciaEConta(transferencia.getAgenciaDestino(), transferencia.getContaDestino());
+		
+		if(contaOrigem != null && contaDestino != null){
+			if(contaOrigem.getSaldo() != null && contaOrigem.getSaldo() >= transferencia.getValor()){
+				//Efetuar transferência
+			}
+		}
 		ResponseBuilder response = Response.ok();
         
 		return response.build();
 	}
-
 	
 
 }

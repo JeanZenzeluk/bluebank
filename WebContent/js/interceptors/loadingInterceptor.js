@@ -1,5 +1,5 @@
 //Foi incluído o $q porque ira pegar o Response
-angular.module("listaTelefonica").factory("errorInterceptor", function($q, $rootScope, $timeout){
+angular.module("transferencia").factory("errorInterceptor", function($q, $rootScope, $timeout){
 	return{
 		request: function (config){
 			//Ativa o Loading

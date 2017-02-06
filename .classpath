@@ -142,5 +142,6 @@
 	<classpathentry kind="lib" path="C:/Users/Jean/Desktop/IBM Teste/jars/xbean.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Jean/Desktop/IBM Teste/jars/xml-apis.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Jean/Desktop/IBM Teste/jars/xml-apis-ext.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jean/Desktop/IBM Teste/jars/jersey-server-1.0.3.jar/jersey-server-1.0.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

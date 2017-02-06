@@ -1,6 +1,6 @@
-angular.module("listaTelefonica").config(function ($routeProvider){
+angular.module("transferencia").config(function ($routeProvider){
 	$routeProvider.when("/contas",{
-		controller: "listaTelefonicaCtrl",
+		controller: "transferenciaCtrl",
 		templateUrl: "view/contas.html",
 		resolve: {
 			contas: function(contasAPI){

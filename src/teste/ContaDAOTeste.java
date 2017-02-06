@@ -11,9 +11,8 @@ public class ContaDAOTeste {
 	    conta.setNumero_agencia("0001");
 	    conta.setNumero_conta("444455558888");
 
-	    ContaDAO dao = new ContaDAO();
 	    System.out.println("Salvando a Conta: " + conta.getNumero_agencia());
-	    dao.salvarOuAtualizar(conta);
+	    ContaDAO.salvarOuAtualizar(conta);
 
 	  }
 

@@ -1,4 +1,4 @@
-angular.module("listaTelefonica").factory("timestampInterceptor", function(){
+angular.module("transferencia").factory("timestampInterceptor", function(){
 
 	return{
 		request: function(config){

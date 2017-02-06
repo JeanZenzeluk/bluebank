@@ -1,5 +1,5 @@
 //Foi incluído o $q porque ira pegar o Response
-angular.module("listaTelefonica").factory("errorInterceptor", function($q, $location){
+angular.module("transferencia").factory("errorInterceptor", function($q, $location){
 	return {
 		responseError: function (rejection){
 			if(rejection.status === 500){

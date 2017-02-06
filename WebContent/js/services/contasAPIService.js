@@ -1,4 +1,4 @@
-angular.module("listaTelefonica").factory("contasAPI", function($http, config){
+angular.module("transferencia").factory("contasAPI", function($http, config){
 	var _getContas = function(){
 		return $http.get(config.baseUrl + "/conta/contas");
 	};
@@ -8,6 +8,9 @@ angular.module("listaTelefonica").factory("contasAPI", function($http, config){
 	};
 
 	var _saveConta = function(conta){
+		
+		
+		
 		return $http.post(config.baseUrl + "/conta/", conta);
 	};
 	
